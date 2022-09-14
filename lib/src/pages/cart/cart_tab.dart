@@ -95,7 +95,7 @@ class _CartTabState extends State<CartTab> {
                   child: ElevatedButton(
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
-                      print(result);
+                      print(result == true ? result : "false");
                     },
                     style: ElevatedButton.styleFrom(
                         primary: CustomColors.customSwatchColor,
