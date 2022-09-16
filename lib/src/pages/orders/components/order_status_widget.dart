@@ -38,7 +38,7 @@ class OrderStatusWidget extends StatelessWidget {
             title: 'Pix estornado',
             backgroundColor: Colors.orange,
           ),
-        ] else if (isOverdue) ...[
+        ] else if (isOverdue && currentStatus == 0) ...[
           const _StatusDot(
             isActive: true,
             title: 'Pagamento Pix vencido',
@@ -111,7 +111,9 @@ class _StatusDot extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: CustomColors.customSwatchColor,
+              color: isActive
+                  ? Colors.transparent
+                  : CustomColors.customSwatchColor,
             ),
             color: isActive
                 ? backgroundColor ?? CustomColors.customSwatchColor

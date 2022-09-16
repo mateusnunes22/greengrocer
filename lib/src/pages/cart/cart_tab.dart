@@ -16,23 +16,20 @@ class CartTab extends StatefulWidget {
 class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
 
-  void removeItemFromCart(CartItemModel cartITem) {
+  double total = 0.0;
+
+  void updateTotalPrice(CartItemModel cartITem) {
     setState(() {
-      app_data.cartItems.remove(cartITem);
-
-      utilsServices.showToast(
-          message: '${cartITem.item.itemName} removido(a) do carrinho');
+      if (cartITem.quantity < 1) {
+        app_data.cartItems.remove(cartITem);
+        utilsServices.showToast(
+            message: '${cartITem.item.itemName} removido(a) do carrinho');
+      }
+      total = 0.0;
+      for (var item in app_data.cartItems) {
+        total += item.totalPrice();
+      }
     });
-  }
-
-  double cartTotalPrice() {
-    double total = 0;
-
-    for (var item in app_data.cartItems) {
-      total += item.totalPrice();
-    }
-
-    return total;
   }
 
   @override
@@ -50,7 +47,7 @@ class _CartTabState extends State<CartTab> {
               itemBuilder: (_, index) {
                 return CartTile(
                   cartItem: app_data.cartItems[index],
-                  remove: removeItemFromCart,
+                  remove: updateTotalPrice,
                 );
               },
             ),
@@ -87,7 +84,7 @@ class _CartTabState extends State<CartTab> {
                         ),
                       ),
                       Text(
-                        utilsServices.priceToCurrency(cartTotalPrice()),
+                        utilsServices.priceToCurrency(total),
                         style: TextStyle(
                           fontSize: 23,
                           color: CustomColors.customSwatchColor,

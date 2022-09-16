@@ -33,6 +33,7 @@ class QuantityWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Botão subtrair e remover
           _QuantityButton(
             icon:
                 !isRemovable || value > 1 ? Icons.remove : Icons.delete_forever,
@@ -44,6 +45,8 @@ class QuantityWidget extends StatelessWidget {
               result(resultCount);
             },
           ),
+
+          // Quantidade
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6),
             child: Text(
@@ -54,6 +57,8 @@ class QuantityWidget extends StatelessWidget {
               ),
             ),
           ),
+
+          // Botão adicionar
           _QuantityButton(
             icon: Icons.add,
             color: CustomColors.customSwatchColor,

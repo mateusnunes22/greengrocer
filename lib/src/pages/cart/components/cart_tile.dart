@@ -61,10 +61,8 @@ class _CartTileState extends State<CartTile> {
             setState(() {
               widget.cartItem.quantity = quantity;
 
-              if (quantity == 0) {
-                // Remover item do carrinho
-                widget.remove(widget.cartItem);
-              }
+              // Remover item do carrinho
+              widget.remove(widget.cartItem);
             });
           },
           isRemovable: true,
