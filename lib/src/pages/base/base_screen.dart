@@ -34,6 +34,11 @@ class _BaseScreenState extends State<BaseScreen> {
           setState(() {
             currentIndex = index;
             pageController.jumpToPage(index);
+            // pageController.animateToPage(
+            //   index,
+            //   duration: const Duration(milliseconds: 500),
+            //   curve: Curves.easeInOutQuart,
+            // );
           });
         },
         type: BottomNavigationBarType.fixed,
@@ -54,8 +59,8 @@ class _BaseScreenState extends State<BaseScreen> {
             label: 'Pedidos',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
-            label: 'Perfil',
+            icon: Icon(Icons.person_outline),
+            label: 'perfil',
           ),
         ],
       ),

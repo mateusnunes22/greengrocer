@@ -1,10 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
+import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
+import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 import 'package:greengrocer/src/pages/auth/sign_up_screen.dart';
 import 'package:greengrocer/src/pages/base/base_screen.dart';
-
-import 'components/custom_text_field.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -26,27 +26,9 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Nome do app
-                    Text.rich(
-                      TextSpan(
-                        style: const TextStyle(
-                          fontSize: 40,
-                        ),
-                        children: [
-                          const TextSpan(
-                            text: "Green",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "grocer",
-                            style: TextStyle(
-                              color: CustomColors.customContrastColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                    const AppNameWidget(
+                      greenTitleColor: Colors.white,
+                      textSize: 40,
                     ),
 
                     // Categorias
@@ -60,19 +42,20 @@ class SignInScreen extends StatelessWidget {
                           pause: Duration.zero,
                           repeatForever: true,
                           animatedTexts: [
-                            FadeAnimatedText("Frutas"),
-                            FadeAnimatedText("Verduras"),
-                            FadeAnimatedText("Carnes"),
-                            FadeAnimatedText("Legumes"),
-                            FadeAnimatedText("Cereais"),
-                            FadeAnimatedText("Laticíneos"),
+                            FadeAnimatedText('Frutas'),
+                            FadeAnimatedText('Verduras'),
+                            FadeAnimatedText('Legumes'),
+                            FadeAnimatedText('Carnes'),
+                            FadeAnimatedText('Cereais'),
+                            FadeAnimatedText('Laticíneos'),
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+
               // Formulário
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -91,14 +74,16 @@ class SignInScreen extends StatelessWidget {
                     // Email
                     const CustomTextField(
                       icon: Icons.email,
-                      label: "Email",
+                      label: 'Email',
                     ),
+
                     // Senha
                     const CustomTextField(
                       icon: Icons.lock,
-                      label: "Senha",
+                      label: 'Senha',
                       isSecret: true,
                     ),
+
                     // Botão de entrar
                     SizedBox(
                       height: 50,
@@ -115,26 +100,28 @@ class SignInScreen extends StatelessWidget {
                           }));
                         },
                         child: const Text(
-                          "Entrar",
+                          'Entrar',
                           style: TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       ),
                     ),
+
                     // Esqueceu a senha
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {},
                         child: Text(
-                          "Esqueceu a senha?",
+                          'Esqueceu a senha?',
                           style: TextStyle(
                             color: CustomColors.customContrastColor,
                           ),
                         ),
                       ),
                     ),
+
                     // Divisor
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10),
@@ -148,7 +135,7 @@ class SignInScreen extends StatelessWidget {
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15),
-                            child: Text("Ou"),
+                            child: Text('Ou'),
                           ),
                           Expanded(
                             child: Divider(
@@ -174,19 +161,22 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (c) {
-                            return const SignUpScreen();
-                          }));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (c) {
+                                return SignUpScreen();
+                              },
+                            ),
+                          );
                         },
                         child: const Text(
-                          "Criar conta",
+                          'Criar conta',
                           style: TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

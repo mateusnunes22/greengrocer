@@ -57,7 +57,6 @@ ItemModel papaya = ItemModel(
       'O melhor mamão da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
 );
 
-// Lista de produtos
 List<ItemModel> items = [
   apple,
   grape,
@@ -68,34 +67,34 @@ List<ItemModel> items = [
 ];
 
 List<String> categories = [
-  "Frutas",
-  "Grãos",
-  "Verduras",
-  "Tempeiros",
-  "Cereais",
+  'Frutas',
+  'Grãos',
+  'Verduras',
+  'Temperos',
+  'Careais',
 ];
 
 List<CartItemModel> cartItems = [
   CartItemModel(
     item: apple,
+    quantity: 4,
+  ),
+  CartItemModel(
+    item: mango,
     quantity: 2,
   ),
   CartItemModel(
     item: guava,
     quantity: 1,
   ),
-  CartItemModel(
-    item: mango,
-    quantity: 3,
-  ),
 ];
 
 UserModel user = UserModel(
-  name: "Mateus",
-  email: "mateus@email.com",
-  phone: "99 9 9999-9999",
-  cpf: "999.999.999-99",
-  password: "",
+  phone: '99 9 9999-9999',
+  cpf: '999.999.999-99',
+  email: 'user@email.com',
+  name: 'New User',
+  password: '',
 );
 
 List<OrderModel> orders = [

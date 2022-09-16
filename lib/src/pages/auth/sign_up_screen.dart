@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
-import 'package:greengrocer/src/pages/auth/components/custom_text_field.dart';
+import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
+
+  final cpfFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
+
+  final phoneFormatter = MaskTextInputFormatter(
+    mask: '## # ####-####',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    final cpfFormatter = MaskTextInputFormatter(
-      mask: "###.###.###-##",
-      filter: {'#': RegExp(r'[0-9]')},
-    );
-
-    final phoneFormatter = MaskTextInputFormatter(
-      mask: "## # ####-####",
-      filter: {'#': RegExp(r'[0-9]')},
-    );
 
     return Scaffold(
       backgroundColor: CustomColors.customSwatchColor,
@@ -33,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
                   const Expanded(
                     child: Center(
                       child: Text(
-                        "Cadastro",
+                        'Cadastro',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 35,
@@ -41,10 +41,12 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Formulario
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 40,
                       horizontal: 32,
+                      vertical: 40,
                     ),
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -56,35 +58,45 @@ class SignUpScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const CustomTextField(
-                            icon: Icons.email, label: "Email"),
+                          icon: Icons.email,
+                          label: 'Email',
+                        ),
                         const CustomTextField(
-                            icon: Icons.lock, label: "Senha", isSecret: true),
+                          icon: Icons.lock,
+                          label: 'Senha',
+                          isSecret: true,
+                        ),
                         const CustomTextField(
-                            icon: Icons.person, label: "Nome"),
+                          icon: Icons.person,
+                          label: 'Nome',
+                        ),
                         CustomTextField(
-                            icon: Icons.phone,
-                            label: "Celular",
-                            inputFormatters: [phoneFormatter]),
+                          icon: Icons.phone,
+                          label: 'Celular',
+                          inputFormatters: [phoneFormatter],
+                        ),
                         CustomTextField(
-                            icon: Icons.file_copy,
-                            label: "CPF",
-                            inputFormatters: [cpfFormatter]),
+                          icon: Icons.file_copy,
+                          label: 'CPF',
+                          inputFormatters: [cpfFormatter],
+                        ),
                         SizedBox(
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            )),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                            ),
                             onPressed: () {},
                             child: const Text(
-                              "Cadastrar usuário",
+                              'Cadastrar usuário',
                               style: TextStyle(
                                 fontSize: 18,
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -99,12 +111,12 @@ class SignUpScreen extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     icon: const Icon(
-                      Icons.arrow_back,
+                      Icons.arrow_back_ios,
                       color: Colors.white,
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

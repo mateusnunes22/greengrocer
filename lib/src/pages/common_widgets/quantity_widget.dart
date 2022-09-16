@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 
 class QuantityWidget extends StatelessWidget {
-  final int quantity;
+  final int value;
   final String suffixText;
   final Function(int quantity) result;
-  final bool isRemoveble;
+  final bool isRemovable;
 
   const QuantityWidget({
     Key? key,
-    required this.quantity,
     required this.suffixText,
+    required this.value,
     required this.result,
-    this.isRemoveble = false
+    this.isRemovable = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    bool removeQuantity = !isRemoveble || quantity > 1;
-
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
@@ -36,35 +33,33 @@ class QuantityWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Botão de remover ou deletar do carrinho
-          _quantityButton(
-            icon: removeQuantity ? Icons.remove : Icons.delete_forever,
-            color: removeQuantity ? Colors.grey : Colors.red,
+          _QuantityButton(
+            icon:
+                !isRemovable || value > 1 ? Icons.remove : Icons.delete_forever,
+            color: !isRemovable || value > 1 ? Colors.grey : Colors.red,
             onPressed: () {
-              if (quantity == 1 && !isRemoveble) return;
-              int resultCount = quantity - 1;
+              if (value == 1 && !isRemovable) return;
+
+              int resultCount = value - 1;
               result(resultCount);
             },
           ),
-
-          // Nome e valor
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 6),
             child: Text(
-              '$quantity$suffixText',
+              '$value$suffixText',
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-
-          // Botão de adcionar
-          _quantityButton(
+          _QuantityButton(
             icon: Icons.add,
             color: CustomColors.customSwatchColor,
             onPressed: () {
-              int resultCount = quantity + 1;
+              int resultCount = value + 1;
+
               result(resultCount);
             },
           ),
@@ -74,13 +69,12 @@ class QuantityWidget extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
-class _quantityButton extends StatelessWidget {
+class _QuantityButton extends StatelessWidget {
   final Color color;
   final IconData icon;
   final VoidCallback onPressed;
 
-  const _quantityButton({
+  const _QuantityButton({
     Key? key,
     required this.color,
     required this.icon,

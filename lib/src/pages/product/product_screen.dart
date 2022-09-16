@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/models/item_model.dart';
 import 'package:greengrocer/src/pages/common_widgets/quantity_widget.dart';
-import 'package:greengrocer/src/services/utils.serices.dart';
+import 'package:greengrocer/src/services/utils_services.dart';
 
 class ProductScreen extends StatefulWidget {
-  final ItemModel item;
-
   const ProductScreen({
     Key? key,
     required this.item,
   }) : super(key: key);
+
+  final ItemModel item;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  final UtilsServices utils = UtilsServices();
+  final UtilsServices utilsServices = UtilsServices();
 
-  int cartQuantityUnit = 1;
+  int cartItemQuantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -69,20 +69,20 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           ),
                           QuantityWidget(
-                            quantity: cartQuantityUnit,
                             suffixText: widget.item.unit,
+                            value: cartItemQuantity,
                             result: (quantity) {
                               setState(() {
-                                cartQuantityUnit = quantity;
+                                cartItemQuantity = quantity;
                               });
                             },
-                          )
+                          ),
                         ],
                       ),
 
                       // Preço
                       Text(
-                        utils.priceToCurrency(widget.item.price),
+                        utilsServices.priceToCurrency(widget.item.price),
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
@@ -110,12 +110,13 @@ class _ProductScreenState extends State<ProductScreen> {
                         height: 55,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          )),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
                           onPressed: () {},
                           label: const Text(
-                            "Add ao carrinho",
+                            'Add no carrinho',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -126,7 +127,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             color: Colors.white,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -134,17 +135,19 @@ class _ProductScreenState extends State<ProductScreen> {
             ],
           ),
 
-          // Botão de voltar
+          // Botão voltar
           Positioned(
-            top: 10,
             left: 10,
+            top: 10,
             child: SafeArea(
               child: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

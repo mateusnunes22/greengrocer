@@ -6,10 +6,10 @@ class UserModel {
   String password;
 
   UserModel({
-    required this.name,
-    required this.email,
     required this.phone,
     required this.cpf,
+    required this.email,
+    required this.name,
     required this.password,
   });
 }
